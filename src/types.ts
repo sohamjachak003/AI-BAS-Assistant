@@ -5,6 +5,7 @@ export interface SOPStep {
   stepNumber: number;
   title: string;
   description: string;
+  briefing?: string;
   actionCode: string;
   expectedObject: string;
   hazardNote?: string;

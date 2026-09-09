@@ -28,6 +28,7 @@ SOP_STEPS = [
         "action_code": "OPEN_TRAY",
         "title": "Open Sample Tray",
         "description": "Unlock safety latch and pull open bio-containment tray.",
+        "briefing": "Depress secondary mechanical safety pin on left rail, pull tray smoothly to full detent.",
         "hazard": "Inspect seal integrity before opening."
     },
     {
@@ -35,6 +36,7 @@ SOP_STEPS = [
         "action_code": "INSERT_SAMPLE",
         "title": "Insert Sample",
         "description": "Place biological culture ampoule inside slot A-1.",
+        "briefing": "Align culture ampoule keyway with Slot A-1 and press until locking collar clicks.",
         "hazard": "Anti-vibration micro-gravity handling required."
     },
     {
@@ -42,6 +44,7 @@ SOP_STEPS = [
         "action_code": "ADD_REAGENT",
         "title": "Add Reagent",
         "description": "Dispense 5ml nutrient substrate buffer using micro-pipette.",
+        "briefing": "Hold pipette 2mm above ampoule at 90 deg vertical angle to prevent bubble dispersion.",
         "hazard": "Maintain 90-degree pipette angle."
     },
     {
@@ -49,6 +52,7 @@ SOP_STEPS = [
         "action_code": "CLOSE_CONTAINER",
         "title": "Close Container",
         "description": "Slide tray back and engage dual vacuum lock.",
+        "briefing": "Slide cradle into housing and rotate vacuum lock dial 90 deg clockwise until green.",
         "hazard": "Verify hermetic pressure seal."
     },
     {
@@ -56,6 +60,7 @@ SOP_STEPS = [
         "action_code": "START_INCUBATOR",
         "title": "Start Incubator",
         "description": "Engage thermal incubation cycle at 37.0 C.",
+        "briefing": "Flip master incubator rocker switch ON and verify 37.0 C telemetry ground sync.",
         "hazard": "Ensure telemetry uplink to ground station."
     }
 ]

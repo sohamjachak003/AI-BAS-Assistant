@@ -1,5 +1,5 @@
 import React from 'react';
-import { CheckCircle2, Clock, AlertCircle, ArrowRight, ClipboardList, ShieldAlert } from 'lucide-react';
+import { CheckCircle2, Clock, AlertCircle, ArrowRight, ClipboardList, ShieldAlert, Info } from 'lucide-react';
 import { SOPStep, AssistantRunState } from '../types';
 
 interface SOPListProps {
@@ -74,6 +74,21 @@ export const SOPList: React.FC<SOPListProps> = ({
             <p className="text-sm text-slate-700 font-medium leading-normal mb-2.5">
               {activeStep.description}
             </p>
+
+            {/* Astronaut Briefing Instruction for In-Progress Step */}
+            {activeStep.briefing && (
+              <div className="flex items-start gap-2 p-2.5 rounded bg-sky-50/90 border border-sky-300 text-sky-950 text-xs font-medium mb-2.5 shadow-xs">
+                <Info className="w-4 h-4 text-sky-600 shrink-0 mt-0.5" />
+                <div>
+                  <div className="text-[10px] font-bold uppercase tracking-wider text-sky-800 mb-0.5">
+                    Astronaut Briefing Directive
+                  </div>
+                  <div className="text-slate-800 leading-relaxed">
+                    {activeStep.briefing}
+                  </div>
+                </div>
+              </div>
+            )}
 
             {activeStep.hazardNote && (
               <div className="flex items-start gap-1.5 p-2 rounded bg-amber-50 border border-amber-300 text-amber-900 text-xs font-semibold">
@@ -186,6 +201,13 @@ export const SOPList: React.FC<SOPListProps> = ({
                         : 'Pending'}
                     </span>
                   </div>
+
+                  {step.status === 'in_progress' && step.briefing && (
+                    <div className="mt-2 ml-7 p-2 rounded bg-sky-100/70 border border-sky-200 text-[11px] text-sky-950 font-normal leading-relaxed">
+                      <span className="font-bold text-sky-800 uppercase text-[9px] block">Briefing:</span>
+                      {step.briefing}
+                    </div>
+                  )}
 
                   {step.completedAt && (
                     <div className="text-[10px] text-emerald-700 mt-1 pl-7 font-mono flex items-center gap-1">

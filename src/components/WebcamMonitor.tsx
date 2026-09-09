@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react';
-import { Camera, CameraOff, Video, AlertTriangle, CheckCircle2, RefreshCw, Layers } from 'lucide-react';
+import { Camera, CameraOff, Video, AlertTriangle, CheckCircle2, RefreshCw, Layers, Info } from 'lucide-react';
 import { AssistantRunState, SOPStep } from '../types';
 import { WebcamActionAnalyzer } from '../utils/actionDetector';
 import { drawHolographicOverlay } from '../utils/hologramRenderer';
@@ -335,7 +335,7 @@ export const WebcamMonitor: React.FC<WebcamMonitorProps> = ({
         )}
 
         {/* Active Real-Time SOP Alert Banner inside Camera */}
-        {lastAlert && Date.now() - lastAlert.timestamp < 3500 && (
+        {lastAlert && Date.now() - lastAlert.timestamp < 3500 ? (
           <div
             id="banner-voice-alert"
             className={`absolute bottom-4 left-4 right-4 z-30 p-3 rounded-md shadow-lg border text-sm font-bold flex items-center gap-2.5 transition-all ${
@@ -351,7 +351,30 @@ export const WebcamMonitor: React.FC<WebcamMonitorProps> = ({
             )}
             <div className="flex-1 text-sm font-semibold">{lastAlert.message}</div>
           </div>
-        )}
+        ) : runState === 'RUNNING' && currentStep?.briefing ? (
+          /* Live Astronaut In-Progress Briefing Guidance Overlay on Camera Feed */
+          <div
+            id="hud-briefing-overlay"
+            className="absolute bottom-3 left-3 right-3 z-25 bg-[#0B2545]/92 backdrop-blur-xs border border-sky-400/60 text-white p-2.5 rounded-md shadow-xl flex items-start gap-2.5"
+          >
+            <div className="w-5 h-5 rounded bg-sky-500/20 border border-sky-400 flex items-center justify-center shrink-0 mt-0.5">
+              <Info className="w-3.5 h-3.5 text-sky-300" />
+            </div>
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center gap-2 mb-0.5">
+                <span className="text-[10px] font-black uppercase tracking-wider text-sky-300 font-mono">
+                  SOP Step {currentStep.stepNumber} Briefing Directive
+                </span>
+                <span className="px-1.5 py-0.2 bg-blue-500/20 text-sky-200 border border-sky-400/40 rounded text-[9px] font-bold">
+                  IN PROGRESS
+                </span>
+              </div>
+              <p className="text-xs text-sky-100 font-medium leading-snug">
+                {currentStep.briefing}
+              </p>
+            </div>
+          </div>
+        ) : null}
 
         {/* Real-time Detection Tag */}
         {activeDetection && (
